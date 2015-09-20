@@ -19,7 +19,7 @@
 var width = 900,
     height = 600;
 
-var color = d3.scale.category20c();
+var color = d3.scale.category10();
 
 var treemap = d3.layout.treemap()
     .size([width, height])
@@ -42,7 +42,7 @@ d3.json("flare.json", function(error, root) {
       .style("top", function(d) { return d.y + "px"; })
       .style("width", function(d) { return Math.max(0, d.dx - 1) + "px"; })
       .style("height", function(d) { return Math.max(0, d.dy - 1) + "px"; })
-      .style("background", function(d) { return d.children ? color(d.name) : null; })
+      .style("background", function(d) { return d.children ? color(d.name ) : null; })
       .text(function(d) { return d.children ? null : d.name; });
 });
 
