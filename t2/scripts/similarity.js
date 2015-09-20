@@ -26,10 +26,27 @@ for (var i = 0; i < coisines.length; i++) {
     var topic = JSON.parse(fs.readFileSync("./coisines/" + coisines[t].replace(/\s/g, '') +
       "_topics_id.json"));
 
+    var intersection = _.intersection(current, topic);
+
+    var similarity = 2;
+    if (intersection.length != current.length) {
+      if (current.length > topic.length) {
+        similarity = intersection.length / topic.length;
+      } else {
+        similarity = intersection.length / current.length;
+      }
+    }
+
+
+    if (similarity != 2) {
+      var cof = (similarity * 100) % 10;
+      similarity *= (cof / 2);
+    }
+
     output.links.push({
       source: (i + 1),
       target: (t + 1),
-      value: similarity(current, topic)
+      value: similarity //similarity(current, topic)
     });
 
   }

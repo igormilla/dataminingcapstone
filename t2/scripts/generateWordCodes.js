@@ -7,7 +7,8 @@ topics = [];
 var allTopics = [];
 
 for (var i = 0; i < coisines.length; i++) {
-  var cTopics = JSON.parse(fs.readFileSync("./coisines/" + coisines[i].replace(/\s/g, '') + "_topics.json"));
+  var cTopics = JSON.parse(fs.readFileSync("./coisines/" + coisines[i].replace(/\s/g, '') +
+    "_topics.json"));
   topics.push(cTopics);
   allTopics = _.union(allTopics, cTopics);
 }
@@ -18,6 +19,6 @@ for (var i = 0; i < coisines.length; i++) {
   }
   var file = "./coisines/" + coisines[i].replace(/\s/g, '') + "_topics_id.json";
 
-  jsonfile.writeFile(file, topics[i], function(err) { });
+  jsonfile.writeFile(file, _.uniq(topics[i]), function(err) {});
 
 }

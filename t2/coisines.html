@@ -21,7 +21,7 @@
 
   <script>
     var margin = {
-        top: 200,
+        top: 220,
         right: 200,
         bottom: 10,
         left: 200
@@ -147,7 +147,13 @@
             return z(d.z);
           })
           .style("fill", function(d) {
-            return nodes[d.x].group == nodes[d.y].group ? c(nodes[d.x].group) : null;
+            try{
+              console.log(nodes[d.x].group == nodes[d.y].group, c(nodes[d.x].group));
+            }catch(e){
+              console.log(nodes[d.x].group == nodes[d.y].group, nodes[d.x].group);
+            }
+
+            return c(nodes[d.x].group);
           })
           .on("mouseover", mouseover)
           .on("mouseout", mouseout);
@@ -199,6 +205,7 @@
             return "translate(" + x(i) + ")rotate(-90)";
           });
       }
+      order("group");
     });
   </script>
 </body>
